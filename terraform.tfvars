@@ -2,13 +2,6 @@
 # Example .tfvars file
 # Can be copied to terraform.tfvars and edited so that Terraform will automatically use variables from this file.
 #
-api_key_id = "604bb4c77564612d334281b8/604bb4c77564612d334281bd/606f7b537564612d339b9712"
-api_private_key = "/Users/prathjan/Downloads/Secret104.txt"
-mgmtcfgsshkeys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJkPIkcSWkLxdEeMCTr3eMB7L20GEQpIfKDlvoPHGe6f prathjan@PRATHJAN-M-T39V"
-
-
-
-
 
 name = "testsandbox3"
 
