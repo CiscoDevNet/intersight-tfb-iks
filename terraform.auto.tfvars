@@ -3,32 +3,32 @@
 # Can be copied to terraform.tfvars and edited so that Terraform will automatically use variables from this file.
 #
 
-name = "testsandbox3"
+name = "testsjc2"
 
 
 # profile params
 # IP Pool name and moid 
-ippool_list = "testpool"
+ippool_list = "testsjcippool"
 
 # Netcfg name
-netcfg_list = "netcfg"
+netcfg_list = "testsjccidr"
 # Syscfg name
-syscfg_list = "syscfg"
-infra_list = "TestsbInfra"
-ippoolmaster_list = "testpool"
-ippoolworker_list = "testpool"
-kubever_list = "k8sversion"
+syscfg_list = "testsjcsyscfg"
+infra_list = "testsjcinfrapol"
+ippoolmaster_list = "testsjcippool"
+ippoolworker_list = "testsjcippool"
+kubever_list = "testsjck8sver"
 orgobjtype = "organization.Organization"
 mgmtcfgetcd = false
 mgmtcfglbcnt = 3
 mgmtcfgsshuser = "iksadmin"
-mastergrpname = "test3-master-pool"
+mastergrpname = "testsjc-master-pool"
 masterdesiredsize = 1
-workergrpname = "test3-worker-pool"
+workergrpname = "testsjc-worker-pool"
 workerdesiredsize = 0
-masterinfraname = "masterinfraname3"
-infrapolname = "TestsbInfra"
-instancetypename = "testMcType"
+masterinfraname = "masterinfranamesjc"
+infrapolname = "testsjcinfrapol"
+instancetypename = "testsjcinstancetype"
 
 
 
