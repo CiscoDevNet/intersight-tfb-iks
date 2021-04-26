@@ -86,7 +86,7 @@ resource "intersight_kubernetes_cluster_profile" "kubeprof" {
 	encrypted_etcd = local.mgmtcfgetcd
 	load_balancer_count = local.mgmtcfglbcnt
 	ssh_keys = [ 
-		 local.mgmtcfgsshkeys
+		 var.mgmtcfgsshkeys
 	]
 	ssh_user = local.mgmtcfgsshuser
 	object_type = "kubernetes.ClusterManagementConfig" 
