@@ -70,6 +70,39 @@ data "intersight_kubernetes_sys_config_policy" "syscfg_moid" {
 }
 
 
+# kube cluster profiles
+resource "intersight_kubernetes_cluster_profile" "kubeprof" {
+  name = local.clustername
+  wait_for_completion=false
+  organization {
+    object_type = "organization.Organization"
+    moid        = data.intersight_organization_organization.organization_moid.results.0.moid
+  }
+  cluster_ip_pools {
+        object_type = "ippool.Pool"
+        moid = data.intersight_ippool_pool.ippool_moid.results.0.moid
+  }
+  management_config {
+        encrypted_etcd = local.mgmtcfgetcd
+        load_balancer_count = local.mgmtcfglbcnt
+        ssh_keys = [
+                 var.mgmtcfgsshkeys
+        ]
+        ssh_user = local.mgmtcfgsshuser
+        object_type = "kubernetes.ClusterManagementConfig"
+  }
+  net_config {
+        moid = data.intersight_kubernetes_network_policy.netcfg_moid.results.0.moid
+        object_type = "kubernetes.NetworkPolicy"
+  }
+
+  sys_config {
+        moid = data.intersight_kubernetes_sys_config_policy.syscfg_moid.results.0.moid
+        object_type = "kubernetes.SysConfigPolicy"
+  }
+}
+
+
 locals {
   organization= yamldecode(data.terraform_remote_state.global.outputs.organization)
   ippool_list = yamldecode(data.terraform_remote_state.global.outputs.ip_pool_policy)
