@@ -37,7 +37,7 @@ variable "globalwsname" {
 
 provider "intersight" {
   apikey        = var.api_key
-  secretkey = var.secreykey
+  secretkey = var.secretkey
   endpoint      = "https://intersight.com"
 }
 
