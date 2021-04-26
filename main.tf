@@ -200,7 +200,6 @@ locals {
   clustername = yamldecode(data.terraform_remote_state.global.outputs.clustername)
   mgmtcfgetcd = yamldecode(data.terraform_remote_state.global.outputs.mgmtcfgetcd)
   mgmtcfglbcnt = yamldecode(data.terraform_remote_state.global.outputs.mgmtcfglbcnt)
-  mgmtcfgsshkeys = yamldecode(data.terraform_remote_state.global.outputs.mgmtcfgsshkeys)
   mgmtcfgsshuser = yamldecode(data.terraform_remote_state.global.outputs.mgmtcfgsshuser)
   ippoolmaster_list = yamldecode(data.terraform_remote_state.global.outputs.ippool_list)
   ippoolworker_list = yamldecode(data.terraform_remote_state.global.outputs.ippool_list)
