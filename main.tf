@@ -73,7 +73,7 @@ data "intersight_ippool_pool" "ippool_moid" {
 
 locals {
   organization= yamldecode(data.terraform_remote_state.global.outputs.organization)
-  ippool_list = yamldecode(data.terraform_remote_state.global.outputs.ippool_list)
+  ippool_list = yamldecode(data.terraform_remote_state.global.outputs.ip_pool_policy)
   netcfg_list = yamldecode(data.terraform_remote_state.global.outputs.network_pod)
   syscfg_list = yamldecode(data.terraform_remote_state.global.outputs.network_service)
   clustername = yamldecode(data.terraform_remote_state.global.outputs.clustername)
