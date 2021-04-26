@@ -33,6 +33,10 @@ variable "globalwsname" {
   type        = string
   description = "TFC WS from where to get the params"
 }
+variable "mgmtcfgsshkeys" {
+  type        = string
+  description = "sshkeys"
+}
 
 
 provider "intersight" {
