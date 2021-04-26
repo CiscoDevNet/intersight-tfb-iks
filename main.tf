@@ -55,9 +55,9 @@ output "organization_moid" {
 
 
 # IPPool moids
-#data "intersight_ippool_pool" "ippool_moid" {
-#  name  = local.ippool_list
-#}
+data "intersight_ippool_pool" "ippool_moid" {
+  name  = local.ippool_list
+}
 
 # Netcfg moids
 #data "intersight_kubernetes_network_policy" "netcfg_moid" {
