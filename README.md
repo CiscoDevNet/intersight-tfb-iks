@@ -10,7 +10,7 @@
 
 ### Pre-requisites
 1. Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in to intersight.com and generate API/Secret Keys.
-2. Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key.
+2. Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key. You will need this when you create the TF Cloud Target in Intersight.
 3. You will need access to a vSphere infrastructure with backend compute and storage provided by a UCS fabric
 4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
 
@@ -39,6 +39,13 @@
 
 
 6. You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
+        api_key = API key from Intersight for user
+
+        secretkey = Secret key from Intersight for user -> mark as sensitive
+
+        mgmtcfgsshkeys = SSH public key -> mark as sensitive
+
+        password = vSphere admin password -> mark as sensitive
 
         device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
 
@@ -75,27 +82,11 @@
 
 7. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
-8. You will add the following variables to the workspace "sb_iks" and flag it as sensitive:
+8. You will execute the Runs in the workspaces in this order: sb_k8sprofile, sb_iks, sb_iksapp, sb_iwocollector
 
-api_key = "Intersight API key"
-
-secretkey = "Intersight secret key"
-
-mgmtcfgsshkeys = "ssh key for cluster nodes"
-
-
-9. You will add the following variables to the workspace "sb_k8sprofile" and flag it as sensitive:
-
-api_key = "Intersight API key"
-
-secretkey = "Intersight secret key"
-
-password = "vsphere admin password"
-
-
-10. You will add the following variables to the workspaces "sb_iksapp" and "sb_iwocollector"
-
-ikswsname = sb_iks
+### Provision IKS Policies and IP Pools with TFCB
+Open "sb_k8sprofile" workspace and Queue a plan manually. Check for status of Run. If successful, it should look something like this:
+![alt text](https://github.com/prathjan/images/blob/main/prof.png?raw=true)
 
 ### Provision a IKS Cluster with TFCB
 Open "sb_iks" workspace and Queue a plan manually. Check for status of Run. If successful, it should look something like this:
