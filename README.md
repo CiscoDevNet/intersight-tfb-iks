@@ -25,6 +25,7 @@
 
 5. TFC Cloud Agent
 
+
 * You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
 
 1. sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
@@ -37,7 +38,8 @@
 
 5. sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
 
-* You will open the workspace "sb_globalvar" in TFCB nad add the following variables based on your vSphere cluster:
+
+* You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
 
 device_name = 
 
@@ -101,13 +103,18 @@ Open "sb_iks" workspace and Queue a plan manually. Check for status of Run. If s
 ![alt text](https://github.com/prathjan/images/blob/main/iksout.png?raw=true)
 
 If successful, download the cluster kubeconfig from Intersight and run a couple of kubectl commands to verify an operational cluster:
+
 kubectl get nodes
+
 kubectl get pods --all-namespaces
 
 ### Deploy a sample "Hello IKS" App
 Open "sb_iksapp" and Queue a plan manually. 
-If successful, access the app wit the loadbalancer IP:
+If successful, access the app with the loadbalancer IP:
+
 kubectl get svc --all-namespaces
+
+Open URL in a browser window.
 
 ### Deploy IWO collector
 Open "sb_iwocollector" and Queue a plan manually.
