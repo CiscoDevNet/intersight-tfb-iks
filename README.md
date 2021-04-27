@@ -6,7 +6,7 @@
 * Use Helm Terraform Provider to deploy IWO (Intersight Workload Optimizer) Collector to collect app and infrastructure insights
 * Use TFCB (Terraform Cloud for Business) to walk through this use case.
 
-![alt text](https://github.com/prathjan/images/blob/main/newiks.png?raw=true)
+![alt text](https://github.com/prathjan/images/blob/main/iksnew.png?raw=true)
 
 ### Pre-requisites
 * Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in to intersight.com and generate API/Secret Keys.
