@@ -40,9 +40,9 @@
 
 6. You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
 
-device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
+        device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
 
-portgroup = Name of the portgroup(s) to be used in this provider	
+        portgroup = Name of the portgroup(s) to be used in this provider	
 
 datastore = Name of the datastore to be used with this provider.
 
