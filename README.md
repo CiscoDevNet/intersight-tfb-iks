@@ -27,15 +27,15 @@
 
 5. You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
 
-* sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
+        sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
 
-* sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
+        sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
 
-* sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
+        sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
 
-* sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
+        sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
 
-* sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
+        sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
 
 
 6. You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
@@ -44,33 +44,33 @@
 
         portgroup = Name of the portgroup(s) to be used in this provider	
 
-datastore = Name of the datastore to be used with this provider.
+        datastore = Name of the datastore to be used with this provider.
 
-vspherecluster = Name of the cluster you wish to make part of this provider within vCenter.
+        vspherecluster = Name of the cluster you wish to make part of this provider within vCenter.
 
-resource_pool = Name of the resource pool to be used with this provider.	
+        resource_pool = Name of the resource pool to be used with this provider.	
 
-organization = Intersight Organization name
+        organization = Intersight Organization name
 
-#ip_pool_policy params
+        #ip_pool_policy params
 
-starting_address = Starting IP Address you want for this pool.
+        starting_address = Starting IP Address you want for this pool.
 
-pool_size = Number of IPs you want this pool to contain.
+        pool_size = Number of IPs you want this pool to contain.
 
-netmask = Subnet Mask for this pool.
+        netmask = Subnet Mask for this pool.
 
-gateway = Default gateway for this pool.
+        gateway = Default gateway for this pool.
 
-primary_dns = Primary DNS Server for this pool.
+        primary_dns = Primary DNS Server for this pool.
 
-#instance type
+        #instance type
 
-cpu = Number of CPU allocated to the virtual machine.
+        cpu = Number of CPU allocated to the virtual machine.
 
-disk_size = Amount of disk to be assigned to the virtual machine in GiB
+        disk_size = Amount of disk to be assigned to the virtual machine in GiB
 
-memory = Amount of memory assigned to the virtual machine in MiB.
+        memory = Amount of memory assigned to the virtual machine in MiB.
 
 
 7. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
