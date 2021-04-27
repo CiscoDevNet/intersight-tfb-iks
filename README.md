@@ -40,37 +40,37 @@
 
 * You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
 
-device_name = 
+device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
 
-portgroup =
+portgroup = Name of the portgroup(s) to be used in this provider	
 
-datastore = 
+datastore = Name of the datastore to be used with this provider.
 
-vspherecluster = 
+vspherecluster = Name of the cluster you wish to make part of this provider within vCenter.
 
-resource_pool = 
+resource_pool = Name of the resource pool to be used with this provider.	
 
-organization = 
+organization = Intersight Organization name
 
 #ip_pool_policy params
 
-starting_address = 
+starting_address = Starting IP Address you want for this pool.
 
-pool_size = 
+pool_size = Number of IPs you want this pool to contain.
 
-netmask = 
+netmask = Subnet Mask for this pool.
 
-gateway = 
+gateway = Default gateway for this pool.
 
-primary_dns = 
+primary_dns = Primary DNS Server for this pool.
 
 #instance type
 
-cpu = 
+cpu = Number of CPU allocated to the virtual machine.
 
-disk_size = 
+disk_size = Amount of disk to be assigned to the virtual machine in GiB
 
-memory = 
+memory = Amount of memory assigned to the virtual machine in MiB.
 
 
 * You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
