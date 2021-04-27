@@ -9,36 +9,36 @@
 ![alt text](https://github.com/prathjan/images/blob/main/iksnew.png?raw=true)
 
 ### Pre-requisites
-* Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in to intersight.com and generate API/Secret Keys.
-* Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key.
-* You will need access to a vSphere infrastructure with compute as a UCS fabric
-* You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
+1. Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in to intersight.com and generate API/Secret Keys.
+2. Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key.
+3. You will need access to a vSphere infrastructure with compute as a UCS fabric
+4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
 
-1. Assist
+* Assist
 
-2. vSphere
+* vSphere
 
-3. UCS Emulator
+* UCS Emulator
 
-4. TFC Cloud
+* TFC Cloud
 
-5. TFC Cloud Agent
-
-
-* You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
-
-1. sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
-
-2. sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
-
-3. sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
-
-4. sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
-
-5. sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
+* TFC Cloud Agent
 
 
-* You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
+5. You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
+
+* sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
+
+* sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
+
+* sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
+
+* sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
+
+* sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
+
+
+6. You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
 
 device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
 
@@ -73,9 +73,9 @@ disk_size = Amount of disk to be assigned to the virtual machine in GiB
 memory = Amount of memory assigned to the virtual machine in MiB.
 
 
-* You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+7. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
-* You will add the following variables to the workspace "sb_iks":
+8. You will add the following variables to the workspace "sb_iks":
 
 api_key = "Intersight API key"
 
@@ -84,7 +84,7 @@ secretkey = "Intersight secret key"
 mgmtcfgsshkeys = "ssh key for cluster nodes"
 
 
-* You will add the following variables to the workspace "sb_k8sprofile"
+9. You will add the following variables to the workspace "sb_k8sprofile"
 
 api_key = "Intersight API key"
 
@@ -93,7 +93,7 @@ secretkey = "Intersight secret key"
 password = "vsphere admin password"
 
 
-* You will add the following variables to the workspaces "sb_iksapp" and "sb_iwocollector"
+10. You will add the following variables to the workspaces "sb_iksapp" and "sb_iwocollector"
 
 ikswsname = sb_iks
 
