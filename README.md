@@ -1,9 +1,9 @@
-# Configuring IKS cluster with Cisco iIntersight Service for Terraform on vSphere Infrastructure 
+# Configuring IKS cluster with Cisco Intersight Service for Terraform on vSphere Infrastructure 
 
 ## Use Case Statement
-* Use Intersight Terraform Provider to provision a single node cluster using Terraform Intersight Provider on vSphere Infrastructure.
+* Use Intersight Terraform Provider to provision a single node k8s cluster using Terraform Intersight Provider on vSphere Infrastructure.
 * Use Helm Terraform Provider to deploy a sample "Hello IKS" Application
-* Use Helm terraform Provider to deploy IWO (Intersight Workload Optimizer) Collector to collect app and infrastructure insights
+* Use Helm Terraform Provider to deploy IWO (Intersight Workload Optimizer) Collector to collect app and infrastructure insights
 * Use TFCB (Terraform Cloud for Business) to walk through this use case.
 
 ![alt text](https://github.com/prathjan/images/blob/main/uciks.png?raw=true)
@@ -14,17 +14,27 @@
 * Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key.
 * You will need access to a vSphere infrastructure with compute as a UCS fabric
 * You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
+
 Assist
+
 vSphere
+
 UCS Emulator
+
 TFC Cloud
+
 TFC Cloud Agent
 
 * You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
+
 sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
+
 sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
+
 sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
+
 sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
+
 sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
 
 * You will open the workspace "sb_globalvar" in TFCB nad add the following variables based on your vSphere cluster:
