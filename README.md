@@ -15,9 +15,9 @@
 * You will need access to a vSphere infrastructure with compute as a UCS fabric
 * You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
 
-Assist
+* * Assist
 
-vSphere
+* * vSphere
 
 UCS Emulator
 
