@@ -11,7 +11,7 @@
 ### Pre-requisites
 1. Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in to intersight.com and generate API/Secret Keys.
 2. Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key.
-3. You will need access to a vSphere infrastructure with compute as a UCS fabric
+3. You will need access to a vSphere infrastructure with backend compute and storage provided by a UCS fabric
 4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
 
         Assist
