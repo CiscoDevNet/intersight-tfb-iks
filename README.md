@@ -8,7 +8,6 @@
 
 ![alt text](https://github.com/prathjan/images/blob/main/newiks.png?raw=true)
 
-
 ### Pre-requisites
 * Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in to intersight.com and generate API/Secret Keys.
 * Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key.
