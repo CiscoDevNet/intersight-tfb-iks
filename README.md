@@ -1,47 +1,78 @@
-# Configuring IKS cluster with Intersight on vSphere Infrastructure 
+# Configuring IKS cluster with Cisco Service for Terraform on vSphere Infrastructure 
 
 ## Use Case Statement
-Create a single node cluster using Terraform Intersight Provider on vSphere Infrastructure.
+* Use Intersight Terraform Provider to provision a single node cluster using Terraform Intersight Provider on vSphere Infrastructure.
+* Use Helm Terraform Provider to deploy a sample "Hello IKS" Application
+* Use Helm terraform Provider to deploy IWO (Intersight Workload Optimizer) Collector to collect app and infrastructure insights
+* Use TFCB (Terraform Cloud for Business) to walk through this use case.
+
 ![alt text](https://github.com/prathjan/images/blob/main/uciks.png?raw=true)
 
 
 ### Pre-requisites
-Please sign up for an account on intersight.com with access to vSphere infrastructure
-You will need to get the Intersight api and secret key.Also, included in this repo is a terraform.vars file that lists 
-the configuration items to be filled in for the IKS cluster and copied over to terraform.tfvars.
+* Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in and generate API/Secret Keys.
+* Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key.
+* You will need access to a vSphere infrastructure with compute as a UCS fabric
+* You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets.
+Assist
+vSphere
+UCS Emulator
+TFC Cloud
+TFC Cloud Agent
 
-### Clone this repository and initialize the provider
+* You will set up the following workspaces in TFCB and link to your VCS repos. You will set the execution mode as noted below. Also, please use the workspace names provided:
+sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
+sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
+sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
+sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
+sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
 
-The following commands can be used to configure your Terraform environment to use the provider:
+* You will open the workspace "sb_globalvar" in TFCB nad add the following variables based on your vSphere cluster:
+device_name = 
+portgroup = 
+datastore = 
+vspherecluster = 
+resource_pool = 
+organization = 
+#ip_pool_policy params
+starting_address = 
+pool_size = 
+netmask = 
+gateway = 
+primary_dns = 
+#instance type
+cpu = 
+disk_size = 
+memory = 
 
-```
-git clone https://github.com/prathjan/iks-intersight-terraform.git
-cd iks-intersight-terraform
-terraform init
-```
+* You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
-Terraform should report "Terraform has been successfully initialized!" following the "terraform init" command.
+* You will add the following variables to the workspace "sb_iks":
+api_key = "Intersight API key"
+secretkey = "Intersight secret key"
+mgmtcfgsshkeys = "ssh key for cluster nodes"
 
-### Configure Variables
+* You will add the following variables to the workspace "sb_k8sprofile"
+api_key = "Intersight API key"
+secretkey = "Intersight secret key"
+password = "vsphere admin password"
 
-* Copy over terraform.vars to terraform.tfvars.Modify the configuration parameters as needed. The configuration specifies the names of your cluster pools, policies and VM profile that can be modified. You can also change the size of your cluster in the config file.You can also check the Intersight API and reference docs for details on these configuration parameters.
-* Log into intersight.com and get the API keys and SecretKey. Include this in the terraform.tfvars file.
-* Generate ssh keys and include the public key in the vars file as well
+* You will add the following variables to the workspaces "sb_iksapp" and "sb_iwocollector"
+ikswsname = sb_iks
 
-### IKS Configuration
-The main configuration file is cprofile.tf which configures a profile for the k8s cluster, create the master and worker node profile and references the cluster profile and finally deploys the cluster
+### Provision a IKS Cluster with TFCB
+Open "sb_iks" workspace and Queue a plan manually. Check for status of Run. If successful, it should look something like this:
+![alt text](https://github.com/prathjan/images/blob/main/iksout.png?raw=true)
 
-### Validate, Plan and Apply
+If successful, download the cluster kubeconfig from Intersight and run a couple of kubectl commands to verify an operational cluster:
+kubectl get nodes
+kubectl get pods --all-namespaces
 
-* terraform validate 
-* terraform plan -out example.tfplan. Review the plan to check out the resources to  be provisioned. You should see resources to provision the cluster profile, master/worker node profiles and deploy action for the cluster.
-* terraform apply
+### Deploy a sample "Hello IKS" App
+Open "sb_iksapp" and Queue a plan manually. 
+If successful, access the app wit the loadbalancer IP:
+kubectl get svc --all-namespaces
 
-### Post provisioning steps
-
-Check for successful deployment of cluster in Intersight portal and download kubeconfig for cluster just created.
-Check for the cluster node list:
-* kubectl --kubeconfig <kubeconfig>.yml get nodes
-
-### Credits
-Parts of this README has been taken from https://github.com/CiscoDevNet/intersight-terraform-modules, Credit: David Soper
+### Deploy IWO collector
+Open "sb_iwocollector" and Queue a plan manually.
+If successful, open the Optimizer in Intersight and view insights for the App just deployed.
