@@ -15,27 +15,27 @@
 * You will need access to a vSphere infrastructure with compute as a UCS fabric
 * You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
 
-* * Assist
+1. Assist
 
-* * vSphere
+2. vSphere
 
-UCS Emulator
+3. UCS Emulator
 
-TFC Cloud
+4. TFC Cloud
 
-TFC Cloud Agent
+5. TFC Cloud Agent
 
 * You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
 
-sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
+1. sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
 
-sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
+2. sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
 
-sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
+3. sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
 
-sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
+4. sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
 
-sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
+5. sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
 
 * You will open the workspace "sb_globalvar" in TFCB nad add the following variables based on your vSphere cluster:
 
