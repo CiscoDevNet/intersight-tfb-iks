@@ -14,15 +14,15 @@
 3. You will need access to a vSphere infrastructure with compute as a UCS fabric
 4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
 
-* Assist
+        Assist
 
-* vSphere
+        vSphere
 
-* UCS Emulator
+        UCS Emulator
 
-* TFC Cloud
+        TFC Cloud
 
-* TFC Cloud Agent
+        TFC Cloud Agent
 
 
 5. You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
@@ -75,7 +75,7 @@
 
 7. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
-8. You will add the following variables to the workspace "sb_iks":
+8. You will add the following variables to the workspace "sb_iks" and flag it as sensitive:
 
 api_key = "Intersight API key"
 
@@ -84,7 +84,7 @@ secretkey = "Intersight secret key"
 mgmtcfgsshkeys = "ssh key for cluster nodes"
 
 
-9. You will add the following variables to the workspace "sb_k8sprofile"
+9. You will add the following variables to the workspace "sb_k8sprofile" and flag it as sensitive:
 
 api_key = "Intersight API key"
 
