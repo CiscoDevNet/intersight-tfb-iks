@@ -104,8 +104,11 @@
 11. You will execute the Runs in the workspaces in this order: 
 
         sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
+
         sb_iks - See section below on "Provision a IKS Cluster with TFCB"
+
         sb_iksapp - See section below on "Deploy a sample "Hello IKS" App using Helm"
+        
         sb_iwocollector - See section below on "Deploy IWO collector using Helm"
 
 ### Provision IKS Policies and IP Pools with TFCB
