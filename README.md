@@ -17,105 +17,106 @@
 
 4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create these Targets:
 
-        Assist
-        vSphere
-        UCS Emulator
-        TFC Cloud
-        TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following NO_PROXY URL's listed:
-            github-releases.githubusercontent.com
-            github.com
-            app.terraform.io
-            registry.terraform.io
-            releases.hashicorp.com
-            archivist.terraform.io
-            prathjan.github.io
+    Assist
+    vSphere
+    UCS Emulator
+    TFC Cloud
+    TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following 
+    NO_PROXY URL's listed:
+        github-releases.githubusercontent.com
+        github.com
+        app.terraform.io
+        registry.terraform.io
+        releases.hashicorp.com
+        archivist.terraform.io
+        prathjan.github.io
 
 
 
 5. You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
 
-        sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
+    sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
 
-        sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
+    sb_k8sprofile -> https://github.com/CiscoDevNet/tfk8spolicy.git -> Execution mode as Remote
 
-        sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
+    sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
 
-        sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
+    sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
 
-        sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
+    sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
 
 
 6. You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
 
-        device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
+    device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
 
-        portgroup = Name of the portgroup(s) to be used in this provider	
+    portgroup = Name of the portgroup(s) to be used in this provider	
 
-        datastore = Name of the datastore to be used with this provider.
+    datastore = Name of the datastore to be used with this provider.
 
-        vspherecluster = Name of the cluster you wish to make part of this provider within vCenter.
+    vspherecluster = Name of the cluster you wish to make part of this provider within vCenter.
 
-        resource_pool = Name of the resource pool to be used with this provider.	
+    resource_pool = Name of the resource pool to be used with this provider.	
 
-        organization = Intersight Organization name
+    organization = Intersight Organization name
 
-        #ip_pool_policy params
+    #ip_pool_policy params
 
-        starting_address = Starting IP Address you want for this pool.
+    starting_address = Starting IP Address you want for this pool.
 
-        pool_size = Number of IPs you want this pool to contain.
+    pool_size = Number of IPs you want this pool to contain.
 
-        netmask = Subnet Mask for this pool.
+    netmask = Subnet Mask for this pool.
 
-        gateway = Default gateway for this pool.
+    gateway = Default gateway for this pool.
 
-        primary_dns = Primary DNS Server for this pool.
+    primary_dns = Primary DNS Server for this pool.
 
-        #instance type
+    #instance type
 
-        cpu = Number of CPU allocated to the virtual machine.
+    cpu = Number of CPU allocated to the virtual machine.
 
-        disk_size = Amount of disk to be assigned to the virtual machine in GiB
+    disk_size = Amount of disk to be assigned to the virtual machine in GiB
 
-        memory = Amount of memory assigned to the virtual machine in MiB.
+    memory = Amount of memory assigned to the virtual machine in MiB.
 
 7. You will open the workspace "sb_k8sprofile" and add the following variables:
 
-        api_key = API key from Intersight for user
+    api_key = API key from Intersight for user
 
-        secretkey = Secret key from Intersight for user -> mark as sensitive
+    secretkey = Secret key from Intersight for user -> mark as sensitive
 
-        password = vSphere admin password -> mark as sensitive
+    password = vSphere admin password -> mark as sensitive
 
 8. You will open the workspace "sb_iks" and add the following variables:
 
-        api_key = API key from Intersight for user
+    api_key = API key from Intersight for user
 
-        secretkey = Secret key from Intersight for user -> mark as sensitive
+    secretkey = Secret key from Intersight for user -> mark as sensitive
 
-        mgmtcfgsshkeys = SSH public key -> mark as sensitive
+    mgmtcfgsshkeys = SSH public key -> mark as sensitive
 
-        globalwsname = sb_globalvar
+    globalwsname = sb_globalvar
 
 9. You will open the workspace "sb_iksapp" and add the following variables:
 
-        ikswsname = sb_iks
+    ikswsname = sb_iks
 
 10. You will open the workspace "sb_iwocollector" and add the following variables:
 
-        ikswsname = sb_iks
+    ikswsname = sb_iks
 
 11. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
 12. You will execute the Runs in the workspaces in this order: 
 
-        sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
+    sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
 
-        sb_iks - See section below on "Provision a IKS Cluster with TFCB"
+    sb_iks - See section below on "Provision a IKS Cluster with TFCB"
 
-        sb_iksapp - See section below on "Deploy a sample "Hello IKS" App using Helm"
+    sb_iksapp - See section below on "Deploy a sample "Hello IKS" App using Helm"
 
-        sb_iwocollector - See section below on "Deploy IWO collector using Helm"
+    sb_iwocollector - See section below on "Deploy IWO collector using Helm"
 
 ### Provision IKS Policies and IP Pools with TFCB
 
