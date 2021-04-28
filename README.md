@@ -8,10 +8,13 @@
 
 ![alt text](https://github.com/prathjan/images/blob/main/iksnew.png?raw=true)
 
-### Pre-requisites
+### Pre-requisites, Guidelines
 1. Sign up for a user account on Intersight.com. You will need Premier license as well as IWO license to complete this use case. Log in to intersight.com and generate API/Secret Keys.
+
 2. Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key. You will need this when you create the TF Cloud Target in Intersight.
+
 3. You will need access to a vSphere infrastructure with backend compute and storage provided by a UCS fabric
+
 4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
 
         Assist
@@ -88,15 +91,32 @@
 
         mgmtcfgsshkeys = SSH public key -> mark as sensitive
 
-7. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+        globalwsname = sb_globalvar
 
-8. You will execute the Runs in the workspaces in this order: sb_k8sprofile, sb_iks, sb_iksapp, sb_iwocollector
+9. You will open the workspace "sb_iwocollector" and add the following variables:
+
+        globalwsname = sb_globalvar
+
+        ikswsname = sb_iks
+
+10. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+
+11. You will execute the Runs in the workspaces in this order: 
+
+        sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
+        sb_iks - See section below on "Provision a IKS Cluster with TFCB"
+        sb_iksapp - See section below on "Deploy a sample "Hello IKS" App using Helm"
+        sb_iwocollector - See section below on "Deploy IWO collector using Helm"
 
 ### Provision IKS Policies and IP Pools with TFCB
+
+Before IKS clusters can be created, policies and IP Pools need to be setup. The workspace "sb_k8sprofile" accounts for this.
 Open "sb_k8sprofile" workspace and Queue a plan manually. Check for status of Run. If successful, it should look something like this:
 ![alt text](https://github.com/prathjan/images/blob/main/prof.png?raw=true)
 
 ### Provision a IKS Cluster with TFCB
+
+Once policies are configured successfully, IKS clusters can be provisioned. The workspace "sb_iks" accounts for this.
 Open "sb_iks" workspace and Queue a plan manually. Check for status of Run. If successful, it should look something like this:
 ![alt text](https://github.com/prathjan/images/blob/main/iksout.png?raw=true)
 
@@ -107,6 +127,8 @@ kubectl get nodes
 kubectl get pods --all-namespaces
 
 ### Deploy a sample "Hello IKS" App using Helm
+
+What use is a cluster without an App,rt? The workspace "sb_iksapp" accounts for this.
 Open "sb_iksapp" and Queue a plan manually. 
 If successful, access the app with the loadbalancer IP:
 
@@ -115,5 +137,18 @@ kubectl get svc --all-namespaces
 Open URL in a browser window.
 
 ### Deploy IWO collector using Helm
+
+Can't have that App runing without insights,correct? The workspace "sb_iwocollector" accounts for this.
 Open "sb_iwocollector" and Queue a plan manually.
+
+Once successful, the collector is installed in your k8s cluster and requires you to claim it as target in Intersight->Target. You will use the following steps to get the Device ID and Code:
+
+    Download kubeconfig for the sbcluster from Intersight
+
+    Execute: kubectl <path_to_kubeconfig> port-forward <collector_pod_id> 9110
+
+    Execute this to get the Device ID: curl -s http://localhost:9110/DeviceIdentifiers
+
+    Execte this to get the Claim Code: curl -s http://localhost:9110/SecurityTokens
+
 If successful, open the Optimizer in Intersight and view insights for the App just deployed.
