@@ -18,26 +18,16 @@
 4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create these Targets:
 
         Assist
-
         vSphere
-
         UCS Emulator
-
         TFC Cloud
-
         TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following NO_PROXY URL's listed:
             github-releases.githubusercontent.com
-
             github.com
-
             app.terraform.io
-
             registry.terraform.io
-
             releases.hashicorp.com
-
             archivist.terraform.io
-
             prathjan.github.io
 
 
