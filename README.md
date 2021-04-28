@@ -23,6 +23,7 @@
     TFC Cloud
     TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following 
     NO_PROXY URL's listed:
+    
             github-releases.githubusercontent.com
             github.com
             app.terraform.io
