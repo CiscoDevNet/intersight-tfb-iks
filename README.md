@@ -108,7 +108,7 @@
         sb_iks - See section below on "Provision a IKS Cluster with TFCB"
 
         sb_iksapp - See section below on "Deploy a sample "Hello IKS" App using Helm"
-        
+
         sb_iwocollector - See section below on "Deploy IWO collector using Helm"
 
 ### Provision IKS Policies and IP Pools with TFCB
@@ -131,7 +131,7 @@ kubectl get pods --all-namespaces
 
 ### Deploy a sample "Hello IKS" App using Helm
 
-What use is a cluster without an App,rt? The workspace "sb_iksapp" accounts for this.
+What use is a cluster without an App deployment,rt? The workspace "sb_iksapp" accounts for this.
 Open "sb_iksapp" and Queue a plan manually. 
 If successful, access the app with the loadbalancer IP:
 
