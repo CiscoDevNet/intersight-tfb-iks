@@ -15,7 +15,7 @@
 
 3. You will need access to a vSphere infrastructure with backend compute and storage provided by a UCS fabric
 
-4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create Targets:
+4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create these Targets:
 
         Assist
 
@@ -25,7 +25,21 @@
 
         TFC Cloud
 
-        TFC Cloud Agent
+        TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following NO_PROXY URL's listed:
+            github-releases.githubusercontent.com
+
+            github.com
+
+            app.terraform.io
+
+            registry.terraform.io
+
+            releases.hashicorp.com
+
+            archivist.terraform.io
+
+            prathjan.github.io
+
 
 
 5. You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
@@ -93,15 +107,17 @@
 
         globalwsname = sb_globalvar
 
-9. You will open the workspace "sb_iwocollector" and add the following variables:
-
-        globalwsname = sb_globalvar
+9. You will open the workspace "sb_iksapp" and add the following variables:
 
         ikswsname = sb_iks
 
-10. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+10. You will open the workspace "sb_iwocollector" and add the following variables:
 
-11. You will execute the Runs in the workspaces in this order: 
+        ikswsname = sb_iks
+
+11. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+
+12. You will execute the Runs in the workspaces in this order: 
 
         sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
 
@@ -137,7 +153,10 @@ If successful, access the app with the loadbalancer IP:
 
 kubectl get svc --all-namespaces
 
-Open URL in a browser window.
+Open URL in a browser window : https://<LB_IP>/
+You should see this:
+
+![alt text](https://github.com/prathjan/images/blob/main/helloiks.png?raw=true)
 
 ### Deploy IWO collector using Helm
 
@@ -154,4 +173,6 @@ Once successful, the collector is installed in your k8s cluster and requires you
 
     Execte this to get the Claim Code: curl -s http://localhost:9110/SecurityTokens
 
-If successful, open the Optimizer in Intersight and view insights for the App just deployed.
+If successful, open the Optimizer in Intersight and view insights for the App just deployed:
+
+![alt text](https://github.com/prathjan/images/blob/main/insights.png?raw=true)
