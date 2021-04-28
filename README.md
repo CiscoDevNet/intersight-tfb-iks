@@ -1,6 +1,6 @@
 # Configuring IKS cluster with Cisco Intersight Service for Terraform on vSphere Infrastructure 
 
-## Use Case Statement
+## Use Case
 * Use Intersight Terraform Provider to provision a single node k8s cluster using Terraform Intersight Provider on vSphere Infrastructure.
 * Use Helm Terraform Provider to deploy a sample "Hello IKS" Application
 * Use Helm Terraform Provider to deploy IWO (Intersight Workload Optimizer) Collector to collect app and infrastructure insights
@@ -39,13 +39,6 @@
 
 
 6. You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
-        api_key = API key from Intersight for user
-
-        secretkey = Secret key from Intersight for user -> mark as sensitive
-
-        mgmtcfgsshkeys = SSH public key -> mark as sensitive
-
-        password = vSphere admin password -> mark as sensitive
 
         device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
 
@@ -79,6 +72,21 @@
 
         memory = Amount of memory assigned to the virtual machine in MiB.
 
+7. You will open the workspace "sb_k8sprofile" and add the following variables:
+
+        api_key = API key from Intersight for user
+
+        secretkey = Secret key from Intersight for user -> mark as sensitive
+
+        password = vSphere admin password -> mark as sensitive
+
+8. You will open the workspace "sb_iks" and add the following variables:
+
+        api_key = API key from Intersight for user
+
+        secretkey = Secret key from Intersight for user -> mark as sensitive
+
+        mgmtcfgsshkeys = SSH public key -> mark as sensitive
 
 7. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
