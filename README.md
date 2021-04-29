@@ -1,4 +1,13 @@
 # Configuring IKS cluster with Cisco Intersight Service for Terraform on vSphere Infrastructure 
+## Contents
+        Use Case
+        Pre-requisites, Guidelines
+        Provision IKS Policies and IP Pools with TFCB
+        Provision a IKS Cluster with TFCB
+        Deploy a sample "Hello IKS" App using Helm
+        Deploy IWO collector using Helm
+
+
 
 ## Use Case
 * Use Intersight Terraform Provider to provision a single node k8s cluster using Terraform Intersight Provider on vSphere Infrastructure.
@@ -23,7 +32,7 @@
     TFC Cloud
     TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following 
     NO_PROXY URL's listed:
-    
+
             github-releases.githubusercontent.com
             github.com
             app.terraform.io
