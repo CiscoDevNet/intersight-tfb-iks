@@ -98,6 +98,8 @@
 
     password = vSphere admin password -> mark as sensitive
 
+    globalwsname = sb_globalvar
+
 8. You will open the workspace "sb_iks" and add the following variables:
 
     api_key = API key from Intersight for user
