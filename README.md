@@ -90,6 +90,8 @@
 
     memory = Amount of memory assigned to the virtual machine in MiB.
 
+    Please also set this workspace to share its data with other workspaces in the organization by enabling Settings->General Settings->Share State Globally.
+
 7. You will open the workspace "sb_k8sprofile" and add the following variables:
 
     api_key = API key from Intersight for user
@@ -118,9 +120,17 @@
 
     ikswsname = sb_iks
 
-11. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+11. You will open the workspace "sb_iksdelete" and add the following variables:
 
-12. You will execute the Runs in the workspaces in this order: 
+    api_key = API key from Intersight for user
+
+    secretkey = Secret key from Intersight for user -> mark as sensitive
+
+    name = sbcluster, IKS cluster name to be deleted
+
+12. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+
+13. You will execute the Runs in the workspaces in this order: 
 
     sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
 
@@ -179,3 +189,7 @@ Once successful, the collector is installed in your k8s cluster and requires you
 If successful, open the Optimizer in Intersight and view insights for the App just deployed:
 
 ![alt text](https://github.com/prathjan/images/blob/main/insights.png?raw=true)
+
+### De-provisioning
+
+You can decommision all resources provisioned by queing a destroy plan in each workspace. Please use the workspace iksdelete to delete the cluster. You can delete the policies after the cluster has been deleted.
