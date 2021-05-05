@@ -132,7 +132,7 @@ data "intersight_kubernetes_virtual_machine_instance_type" "instancetype" {
 # Master
 resource "intersight_kubernetes_node_group_profile" "masternodegrp" {
   name = local.mastergrpname
-  node_type = "ControlPlane"
+  node_type = "ControlPlaneWorker"
   desiredsize = local.masterdesiredsize
 
   ip_pools {
