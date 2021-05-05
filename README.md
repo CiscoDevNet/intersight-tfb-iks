@@ -60,7 +60,7 @@
 
     device_name = Name of the Virtual Machine Provider you wish to add. i.e vCenter
 
-    portgroup = Name of the portgroup(s) to be used in this provider	
+    portgroup = Name of the portgroup(s) to be used in this provider. Please enter this as a list, eg. ["Management"] and mark it as HCL
 
     datastore = Name of the datastore to be used with this provider.
 
