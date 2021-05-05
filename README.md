@@ -51,7 +51,7 @@
 
     sb_iks -> https://github.com/CiscoDevNet/intersight-tfb-iks.git -> Execution mode as Remote
 
-    sb_iksapp -> https://github.com/CiscoDevNet/intersight-tfb-iks-app -> Execution mode as Agent
+    sb_iksapp -> https://github.com/CiscoDevNet/tfiksapp.git -> Execution mode as Agent
 
     sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
 
