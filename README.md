@@ -53,7 +53,9 @@
 
     sb_iksapp -> https://github.com/CiscoDevNet/tfiksapp.git -> Execution mode as Agent
 
-    sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> -> Execution mode as Agent
+    sb_iwocollector -> https://github.com/CiscoDevNet/tfiwoapp.git -> Execution mode as Agent
+
+    sb_iksdelete -> https://github.com/CiscoDevNet/tfiksdelete.git -> Execute mode as Remote
 
 
 6. You will open the workspace "sb_globalvar" in TFCB add the following variables based on your vSphere cluster:
@@ -192,4 +194,4 @@ If successful, open the Optimizer in Intersight and view insights for the App ju
 
 ### De-provisioning
 
-You can decommision all resources provisioned by queing a destroy plan in each workspace. Please use the workspace iksdelete to delete the cluster. You can delete the policies after the cluster has been deleted.
+You can decommision all resources provisioned by queing a destroy plan in each workspace. Please use the workspace sb_iksdelete to delete the cluster. You can delete the policies after the cluster has been deleted.
