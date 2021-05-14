@@ -169,6 +169,7 @@ If successful, access the app with the loadbalancer IP:
 kubectl get svc --all-namespaces
 
 Open URL in a browser window : https://<LB_IP>/
+
 You should see this:
 
 ![alt text](https://github.com/prathjan/images/blob/main/helloiks.png?raw=true)
