@@ -1,6 +1,6 @@
 # Configuring IKS cluster with Cisco Intersight Service for Terraform on vSphere Infrastructure 
 ## Contents
-        Use Case
+        Use Cases
         Pre-requisites, Guidelines
         Provision IKS Policies and IP Pools with TFCB
         Provision a IKS Cluster with TFCB
@@ -9,11 +9,11 @@
 
 
 
-## Use Case
-* Use Intersight Terraform Provider to provision a single node k8s cluster using Terraform Intersight Provider on vSphere Infrastructure.
-* Use Helm Terraform Provider to deploy a sample "Hello IKS" Application
-* Use Helm Terraform Provider to deploy IWO (Intersight Workload Optimizer) Collector to collect app and infrastructure insights
-* Use TFCB (Terraform Cloud for Business) to walk through this use case.
+## Use Cases
+* As a Cloud Admin, use IST (Intersight Service for Terraform) to provision IKS Policies to be leveraged by DevOps in their IKS cluster provisioning
+* As DevOps, use IST ((Intersight Service for Terraform) and IKS policies provided by Cloud Admin to provision a single node k8s cluster on vSphere Infrastructure.
+* As app Developer, use IST to deploy a sample "Hello IKS" Application
+* As app Developer, use IST to deploy IWO (Intersight Workload Optimizer) Collector to collect app and infrastructure insights
 
 ![alt text](https://github.com/prathjan/images/blob/main/iksnew.png?raw=true)
 
@@ -102,7 +102,6 @@
 
     password = vSphere admin password -> mark as sensitive
 
-    globalwsname = sb_globalvar
 
 8. You will open the workspace "sb_iks" and add the following variables:
 
@@ -112,27 +111,17 @@
 
     mgmtcfgsshkeys = SSH public key -> mark as sensitive
 
-    globalwsname = sb_globalvar
 
-9. You will open the workspace "sb_iksapp" and add the following variables:
-
-    ikswsname = sb_iks
-
-10. You will open the workspace "sb_iwocollector" and add the following variables:
-
-    ikswsname = sb_iks
-
-11. You will open the workspace "sb_iksdelete" and add the following variables:
+9. You will open the workspace "sb_iksdelete" and add the following variables:
 
     api_key = API key from Intersight for user
 
     secretkey = Secret key from Intersight for user -> mark as sensitive
 
-    name = sbcluster, IKS cluster name to be deleted
 
-12. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+10. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
-13. You will execute the Runs in the workspaces in this order: 
+11. You will execute the Runs in the workspaces in this order: 
 
     sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
 
