@@ -118,6 +118,8 @@
 
     secretkey = Secret key from Intersight for user -> mark as sensitive
 
+    name = name of k8s cluster to delete
+
 
 10. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
