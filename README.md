@@ -6,10 +6,10 @@
         Provision a IKS Cluster with TFCB
         Deploy a sample "Hello IKS" App using Helm
         Deploy IWO collector using Helm
+        Try with a Sandbox
 
 
-
-## Use Cases
+### Use Cases
 * As a Cloud Admin, use IST (Intersight Service for Terraform) to provision IKS Policies to be leveraged by DevOps in their IKS cluster provisioning
 * As DevOps, use IST ((Intersight Service for Terraform) and IKS policies provided by Cloud Admin to provision a single node k8s cluster on vSphere Infrastructure.
 * As app Developer, use IST to deploy a sample "Hello IKS" Application
@@ -187,3 +187,9 @@ If successful, open the Optimizer in Intersight and view insights for the App ju
 ### De-provisioning
 
 You can decommision all resources provisioned by queing a destroy plan in each workspace. Please use the workspace sb_iksdelete to delete the cluster. You can delete the policies after the cluster has been deleted.
+
+### Try with a Sandbox
+
+A sandbox covering a lot of the above concepts can be found here:
+
+https://devnetsandbox.cisco.com/RM/Diagram/Index/daad55dd-45f1-46c6-a1b4-7339b318c970?diagramType=Topology
