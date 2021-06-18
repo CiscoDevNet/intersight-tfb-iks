@@ -100,8 +100,6 @@
 
     secretkey = Secret key from Intersight for user -> mark as sensitive
 
-    password = vSphere admin password -> mark as sensitive
-
 
 8. You will open the workspace "sb_iks" and add the following variables:
 
