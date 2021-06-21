@@ -22,7 +22,7 @@
 
 2. Sign up for a TFCB (Terraform for Cloud Business) at https://app.terraform.io/. Log in and generate the User API Key. You will need this when you create the TF Cloud Target in Intersight.
 
-3. You will need access to a vSphere infrastructure with backend compute and storage provided by a UCS fabric
+3. You will need access to a vSphere infrastructure with backend compute and storage provisioned
 
 4. You will log into your Intersight account and create the following targets. Please refer to Intersight docs for details on how to create these Targets:
 
@@ -30,7 +30,7 @@
     vSphere
     UCS Emulator
     TFC Cloud
-    TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following 
+    TFC Cloud Agent - When you claim the TF Cloud Agent, please make sure you have the following added to your Managed Hosts. This is in addition to other local subnets you may have that hosts your kubernetes cluster like the IPPool that you may configure for your k8s addressing:
     NO_PROXY URL's listed:
 
             github-releases.githubusercontent.com
@@ -42,8 +42,65 @@
             prathjan.github.io
 
 
+5. If you are leveraging CiscoDevNet organization in app.terraform,io, please go to Step 7. Else go to Step 6.
 
-5. You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
+6. If you have your own TFCB organization and would like to use that, you will have to change the terraform configuration to account for this. Please clone the following repos and create your own corresponding GIT repos. Look for CiscoDeNet org references in the TF files and replace with your own organization:
+
+Clone following repos:
+
+https://github.com/CiscoDevNet/tfglobalvar.git
+
+https://github.com/CiscoDevNet/tfk8spolicy.git
+
+https://github.com/CiscoDevNet/intersight-tfb-iks.git
+
+https://github.com/CiscoDevNet/tfiksapp.git 
+
+https://github.com/CiscoDevNet/tfiwoapp.git
+
+https://github.com/CiscoDevNet/tfiksdelete.git 
+
+
+With CiscoDevNet TFCB org:
+
+data "terraform_remote_state" "global" {
+  backend = "remote"
+  config = {
+    organization = "CiscoDevNet"
+    workspaces = {
+      name = var.globalwsname
+    }
+  }
+}
+
+With your own TFCB org:
+
+data "terraform_remote_state" "global" {
+  backend = "remote"
+  config = {
+    organization = "Lab14"
+    workspaces = {
+      name = var.globalwsname
+    }
+  }
+}
+
+You will set up the following workspaces in TFCB and link to you VCS repos. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
+
+    sb_globalvar -> <your_repo_tfglobalvar.git> -> Execution mode as Remote
+
+    sb_k8sprofile -> <your_repo_tfk8spolicy.git> -> Execution mode as Remote
+
+    sb_iks -> <your_repo_intersight-tfb-iks.git> -> Execution mode as Remote
+
+    sb_iksapp -> <your_repo_tfiksapp.git> -> Execution mode as Agent
+
+    sb_iwocollector -> <your_repo_tfiwoapp.git> -> Execution mode as Agent
+
+    sb_iksdelete -> <your_repo_tfiksdelete.git> -> Execute mode as Remote
+
+
+7. You will set up the following workspaces in TFCB and link to the VCS repos specified. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
 
     sb_globalvar -> https://github.com/CiscoDevNet/tfglobalvar.git -> Execution mode as Remote
 
@@ -92,6 +149,9 @@
 
     memory = Amount of memory assigned to the virtual machine in MiB.
 
+    password = vSphere admin password -> mark as sensitive
+
+
     Please also set this workspace to share its data with other workspaces in the organization by enabling Settings->General Settings->Share State Globally.
 
 7. You will open the workspace "sb_k8sprofile" and add the following variables:
@@ -100,6 +160,7 @@
 
     secretkey = Secret key from Intersight for user -> mark as sensitive
 
+    globalwsname = sb_globalvar
 
 8. You will open the workspace "sb_iks" and add the following variables:
 
@@ -109,6 +170,7 @@
 
     mgmtcfgsshkeys = SSH public key -> mark as sensitive
 
+    Please also set this workspace to share its data with other workspaces in the organization by enabling Settings->General Settings->Share State Globally.
 
 9. You will open the workspace "sb_iksdelete" and add the following variables:
 
@@ -116,12 +178,15 @@
 
     secretkey = Secret key from Intersight for user -> mark as sensitive
 
-    name = name of k8s cluster to delete
+    globalwsname = sb_globalvar
 
+10. You will open the workspace "sb_iksapp" and add the followin variable:
 
-10. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+    ikswsname = sb_iks
 
-11. You will execute the Runs in the workspaces in this order: 
+11. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
+
+12. You will execute the Runs in the workspaces in this order: 
 
     sb_k8sprofile - See section below on "Provision IKS Policies and IP Pools with TFCB"
 
