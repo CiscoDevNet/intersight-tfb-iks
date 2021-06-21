@@ -184,6 +184,8 @@ You will set up the following workspaces in TFCB and link to you VCS repos. You 
 
     ikswsname = sb_iks
 
+    Please also make sure you have configured this workspace to use the Terraform cloud agent configured i your Intersight Target.
+
 11. You will open the workspace "sb_globalvar" in TFCB and queue a plan manually. This will populate the global variables that will be used by the other TFCB workspaces.
 
 12. You will execute the Runs in the workspaces in this order: 
