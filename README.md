@@ -46,44 +46,60 @@
 
 6. If you have your own TFCB organization and would like to use that, you will have to change the terraform configuration to account for this. Please clone the following repos and create your own corresponding GIT repos. Look for CiscoDeNet org references in the TF files and replace with your own organization:
 
-Clone following repos:
+        Clone following repos:
 
-https://github.com/CiscoDevNet/tfglobalvar.git
+        https://github.com/CiscoDevNet/tfglobalvar.git
 
-https://github.com/CiscoDevNet/tfk8spolicy.git
+        https://github.com/CiscoDevNet/tfk8spolicy.git
 
-https://github.com/CiscoDevNet/intersight-tfb-iks.git
+        https://github.com/CiscoDevNet/intersight-tfb-iks.git
 
-https://github.com/CiscoDevNet/tfiksapp.git 
+        https://github.com/CiscoDevNet/tfiksapp.git 
 
-https://github.com/CiscoDevNet/tfiwoapp.git
+        https://github.com/CiscoDevNet/tfiwoapp.git
 
-https://github.com/CiscoDevNet/tfiksdelete.git 
+        https://github.com/CiscoDevNet/tfiksdelete.git 
 
 
-With CiscoDevNet TFCB org:
+        With CiscoDevNet TFCB org:
 
-data "terraform_remote_state" "global" {
-  backend = "remote"
-  config = {
-    organization = "CiscoDevNet"
-    workspaces = {
-      name = var.globalwsname
-    }
-  }
-}
+        data "terraform_remote_state" "global" {
 
-With your own TFCB org:
+            backend = "remote"
 
-data "terraform_remote_state" "global" {
-  backend = "remote"
-  config = {
-    organization = "Lab14"
-    workspaces = {
-      name = var.globalwsname
-    }
-  }
-}
+            config = {
+
+                organization = "CiscoDevNet"
+
+                workspaces = {
+
+                name = var.globalwsname
+
+                }
+
+            }
+
+        }
+
+        With your own TFCB org:
+
+        data "terraform_remote_state" "global" {
+
+            backend = "remote"
+
+            config = {
+
+                organization = "Lab14"
+
+                workspaces = {
+
+                name = var.globalwsname
+
+                }
+
+            }
+
+        }
 
 You will set up the following workspaces in TFCB and link to you VCS repos. You will set the execution mode as noted below. Also, please use the workspace names provided since there are dependencies defined around it:
 
